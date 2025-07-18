@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="/static/js_files/index.js"></script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% load static %}
+    	<link rel="stylesheet" href="{% static 'css_files/index.css' %}">
+		<link rel="icon" href="/static/images/favicon.ico">
+    	<script src="{% static 'js_files/index.js' %}"></script>
+	</head>
+	<body>
+		<div class = "side" onmouseover = show('side') onmouseout = hide('side') >
+			<a href="{% url 'index' %}"><p class="list">Dashboard</p></a>
+			<a href="{% url 'fp_track' %}"><p class="list">Carbon FP track</p></a>
+			<a href="{% url 'prediction' %}"><p class="list">Prediction</p></a>
+			<img class="dash_image" src="{% static 'images/menu.jpg' %}" />
+
+			<!-- <img class = "dash_image" src = "{% static 'images/menu.jpg' %}"></img> -->
+
+				
+		</div>
+		<div class = "dash" >
+			<div class = "menu" onmouseover = show('side') onmouseout = hide('side') >
+				<div class = "bar"></div>
+				<div class = "bar"></div>
+				<div class = "bar"></div>
+			</div>	
+			
+			<div class="box">
+				<img class="account" src="/static/images/account icon.png" alt="Account Icon">
+				<script></script>    		
+				<button class="button" onclick="window.location.href='{% url 'sign_in' %}';">Sign In</button>
+
+			</div>	
+			
+		</div>
+		<img src="{% static 'images/dash.jpg' %}" class="home_image" />
+	
+		
+					
+	</body>
+</html>

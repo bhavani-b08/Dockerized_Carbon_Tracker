@@ -1,0 +1,65 @@
+.dash{
+    background-color : black ;
+    height : 40px ;
+    position : fixed ;
+    top : 0 ;
+    width : 1920px ;
+    overflow : hidden ;
+}
+.menu{
+    border : 1px;
+    border-color : white ; 
+    margin-left : 10px ;
+    margin-top : 8px ; 
+    width : 40px ;
+    height : 30px ;
+    position : fixed ;
+}
+.bar{
+    background-color : white ;
+    height : 5px ;
+    width : 40px ; 
+    margin-bottom : 5px ;
+                        
+}
+.side{
+    margin-top : 20px ;
+    position : fixed ;
+    top : 20px ;
+    height : 100% ;
+    width : 0px ;
+    overflow : hidden ;
+    transition: width 0.2s;
+    background-color : black ;
+}
+.side a {
+    margin-left : 20px ;
+    margin-top : 40px ;
+    display: block;
+    font-size : 23px ;
+    text-decoration: none;
+    color: white ;
+    }
+.side a:hover {
+    color : gray ;
+}
+.button:hover{
+    color : gray ;
+}
+.home_image{
+    width : 100% ;
+    height : 700px ;
+}
+.dash_image{
+    
+}
+
+#title {
+    position : relative ;
+    margin-top : 100px ;
+    font-size: 50px;
+    margin-left: 450px;			
+}
+#myChart {
+    margin-left: 50px;
+}

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+    <link rel="stylesheet" href="{% static 'css_files/sign_in.css' %}">
+    <script src="{% static 'js_files/sign_in.js' %}"></script>
+	
+</head>
+<body>
+	<div class="signin">
+		{% if error %}
+			<script>alert("{{ error }}");</script>
+		{% endif %}
+
+		<form method="post" action = "{% url 'sign_in' %}" >
+		{% csrf_token %}
+		<article class="check"><label>Email</label><input id="loginEmail" class="cinput" required autocomplete="off" placeholder="eg.abc123@gmail.com" type="email" name="email"></article>
+		<article class="check"><label>Password</label><input id="loginPassword" class="cinput" required autocomplete="off" type="password" name="password" ></article>
+		<button class="sign" type="submit" >Sign in</button>
+		</form>
+		<p class="create">Don't have an account yet?<a href="{% url 'user_credentials' %}">Create one</a></p>
+	</div>
+	
+
+</body>
+</html>

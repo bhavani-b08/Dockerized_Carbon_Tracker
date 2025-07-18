@@ -1,0 +1,77 @@
+.dash{
+    background-color : black ;
+    height : 40px ;
+    position : fixed ;
+    width : 100% ;
+    overflow : hidden ;
+}	
+    
+.button{
+
+    border:1px solid ;
+    width:80px;
+    height:30px;
+    top : 5px ;
+    right: 15px ;
+    position:absolute;
+
+}
+.account{
+    margin-left:1770px;
+    width:22px;
+    height:22px;
+    margin-top:8px;
+    padding=0;
+    position:fixed;
+    z-index: 1;
+}
+.menu{
+    border : 1px;
+    border-color : white ; 
+    margin-left : 10px ;
+    margin-top : 8px ; 
+    width : 40px ;
+    height : 30px ;
+    position : fixed ;
+}
+.bar{
+    background-color : white ;
+    height : 5px ;
+    width : 40px ; 
+    margin-bottom : 5px ;
+                        
+}
+.side{
+    margin-top : 20px ;
+    position : absolute ;
+    height : 100% ;
+    width : 0px ;
+    overflow : hidden ;
+    transition: width 0.2s;
+    background-color : black ;
+}
+.side a {
+    margin-left : 20px ;
+    margin-top : 40px ;
+    display: block;
+    font-size : 23px ;
+    text-decoration: none;
+    /* text-align: center; */
+    color: white ;
+}
+.side a:hover {
+    color : gray ;
+}
+.button:hover{
+    color : gray ;
+}
+.home_image{
+    width : 100% ;
+    height : 700px ;
+}
+.dash_image{
+    
+}
+
+
+

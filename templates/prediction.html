@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css_files/prediction.css' %}">
+    <script src="{% static 'js_files/prediction.js' %}"></script>
+    
+</head>
+<body>
+	<div class = "side" onmouseover = show('side') onmouseout = hide('side') >
+			<a href="index.html"><p class = "list">Dashboard</p></a>
+			<a href="fp_track.html"><p class = "list">Carbon FP track</p></a>
+			<a href="prediction.html" ><p class = "list">Prediction</p></a>
+			<img class = "dash_image" src = "images\menu.jpg"></img>
+
+				
+		</div>
+		<div class = "dash" >
+			<div class = "menu" onmouseover = show('side') onmouseout = hide('side') >
+				<div class = "bar"></div>
+				<div class = "bar"></div>
+				<div class = "bar"></div>
+			</div>	
+			
+			<!-- <div class="box">
+				<img class="account" src="file:///C:/Users/hp/OneDrive/Pictures/account%20icon.png" alt="account_icon">    		
+				<button class="button" onmouseover="change_green(this)" onmouseout="change_normal(this)" onclick="openlink()">Sign in</button>
+			</div>	 -->
+			
+		</div>	
+
+     <h1 id="title"><b>Carbon Footprint Over Years</b></h1>
+    <canvas id="myChart" width="1000" height="500"></canvas>
+
+</body>
+</html>

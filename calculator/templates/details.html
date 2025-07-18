@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css_files/details.css' %}">
+    <script src="{% static 'js_files/details.js' %}"></script>
+   
+</head>
+<body>
+    <div class="userdetails">
+        <form action="{% url 'save_details' %}">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Energy Usage</legend>
+                <article>
+                    <label for="electric_type">Elecricity Source : </label>
+                    <select id="electric_type" name="electric_type" onchange="setElectricityFactor()">
+                        <option disabled selected value >-- Select --</option>
+                        <option value="Coal">Coal</option>
+                        <option value="Renewable">Renewable</option>
+                        <option value="Grid Mix">Grid Mix</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </article>
+                <article>
+                    <label for="energy_consumed">Energy Consumed (kWh):</label>
+                    <input type="number" id="energy_consumed" name="energy_consumed"></article>
+                <article>
+                    <label for="electricity_factor">Electricity Emission Factor (kg CO₂/kWh):</label>
+                    <input type="number" id="electricity_factor" name="electricity_factor" step="0.01">
+                </article>
+            </fieldset>
+
+            <fieldset>
+                <legend>Fuel Usage</legend>
+                <article>
+                    <label for="fuel_type12">Fuel Type</label>
+                    <select id="fuel_type" name="fuel_type" onchange="setFuelFactor()">
+                        <option disabled selected value >-- Select --</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Natural Gas">Natural Gas</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </article>
+                <article>
+                    <label for="fuel_consumed">Fuel Consumed (liters):</label>
+                    <input type="number" id="fuel_consumed" name="fuel_consumed">
+                </article>
+                <!-- <article>
+                    <label for="fuel_type">Fuel Type:</label>
+                    <input type="text" id="fuel_type" name="fuel_type">
+                </article> -->
+                <article>
+                    <label for="fuel_factor">Fuel Emission Factor (kg CO₂/liter):</label>
+                    <input type="number" id="fuel_factor" name="fuel_factor" step="0.01">
+                </article>
+            </fieldset>
+
+            <fieldset>
+                <legend>Transportation Details</legend>
+                <article>
+                    <label for="transport_mode">Mode of Transport</label>
+                    <select id="transport_mode" name="transport_mode" onchange="setTransportFactor()">
+                        <option disabled selected value >-- Select --</option>
+                        <option value="Truck">Truck</option>
+                        <option value="Rail">Rail</option>
+                        <option value="Ship">Ship</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </article>
+                <article>
+                    <label for="distance_traveled">Distance Traveled (km):</label>
+                    <input type="number" id="distance_traveled" name="distance_traveled">
+                </article>
+                <article>
+                    <label for="load_weight">Load Weight (tons):</label>
+                    <input type="number" id="load_weight" name="load_weight">
+                </article>
+                <article>
+                    <label for="mode_of_transport">Mode of Transport:</label>
+                    <input type="text" id="mode_of_transport" name="mode_of_transport">
+                </article>
+                <article>
+                    <label for="transport_factor">Transport Emission Factor (kg CO₂/ton-km):</label>
+                    <input type="number" id="transport_factor" name="transport_factor" step="0.01">
+                </article>
+            </fieldset>
+
+            <fieldset>
+                <legend>Methane Emissions</legend>
+                <article>
+                    <label for="methane_volume">Methane Released (m³):</label>
+                    <input type="number" id="methane_volume" name="methane_volume"></article>
+                <article>
+                    <label for="gwp_methane">Global Warming Potential of Methane (default: 28):</label>
+                    <input type="number" id="gwp_methane" name="gwp_methane" value="28" step="0.1">
+                </article>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Land Use</legend>
+                <article>
+                    <label for="land_type">Type of Land</label>
+                    <select id="land_type" name="land_type" onchange="setLandFactors()">
+                        <option disabled selected value >-- Select --</option>
+                        <option value="Forest">Forest</option>
+                        <option value="GrassLand">GrassLand</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </article>
+                <article>
+                    <label for="area_cleared">Area Cleared (hectares):</label>
+                    <input type="number" id="area_cleared" name="area_cleared">
+                </article>
+                <article>
+                    <label for="carbon_stock_per_hectare">Carbon Stock per Hectare (kg CO₂/hectare):</label>
+                    <input type="number" id="carbon_stock_per_hectare" name="carbon_stock_per_hectare" step="0.1">
+                </article>
+                <article>
+                    <label for="area_rehabilitated">Area Rehabilitated (hectares):</label>
+                    <input type="number" id="area_rehabilitated" name="area_rehabilitated">
+                </article>
+                <article>
+                    <label for="rehab_rate">Rehabilitation Rate (kg CO₂/hectare/year):</label>
+                    <input type="number" id="rehab_rate" name="rehab_rate" step="0.1">
+                </article>
+            </fieldset>
+
+            <fieldset>
+                <legend>Coal Production</legend>
+                <article>
+                    <label for="coal_type">Type of Coal</label>
+                    <select id="coal_type" name="coal_type" onchange="setCoalFactor()">
+                        <option disabled selected value >-- Select --</option>
+                        <option value="High Carbon">High Carbon</option>
+                        <option value="Medium Coal">Medium Carbon</option>
+                        <option value="Low Carbon">Low Carbon</option>
+                    </select>
+                </article>
+                <article>
+                    <label for="coal_produced">Amount of Coal Produced (tons):</label>
+                    <input type="number" id="coal_produced" name="coal_produced">
+                </article>
+                <article>
+                    <label for="coal_type">Coal Type:</label>
+                    <input type="text" id="coal_type" name="coal_type">
+                </article>
+                <article>
+                    <label for="coal_emission_factor">Emission Factor of Coal (kg CO₂/ton):</label>
+                    <input type="number" id="coal_emission_factor" name="coal_emission_factor" step="0.1">
+                </article>
+                <article>
+                    <label for="carbon_content_fraction">Carbon Content Fraction (fraction between 0 and 1):</label>
+                    <input type="number" id="carbon_content_fraction" name="carbon_content_fraction" min="0" max="1" step="0.01">
+                </article>
+            </fieldset>
+
+
+            
+            <a class="prev" href="home_page.html"> previous </a>
+            <button class="submit" type="submit" onmouseover="change_green(this)" onmouseout="change_normal(this)" onclick="getradionews()">Calculate</button>
+        </form>
+    </div>
+    <div id="radio_news" hidden></div>
+    <div id="radio_AT" hidden></div>
+</body>
+</html>

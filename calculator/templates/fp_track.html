@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	{% load static %}
+    	<link rel="stylesheet" href="{% static 'css_files/fp_track.css' %}">
+    	<script src="{% static 'js_files/fp_track.js' %}"></script>
+
+		
+
+	</head>
+	<body>
+		<div class = "side" onmouseover = show('side') onmouseout = hide('side') >
+			<a href="{% url 'index' %}" ><p class = "list">Dashboard</p></a>
+			<a href="{% url 'save_details'%}"><p class = "list">Carbon FP track</p></a>
+			<a href="prediction.html"><p class = "list">Prediction</p></a>
+			<img class = "dash_image" src = "{% static 'images\menu.jpg' %}"></img>
+
+				
+		</div>
+		<div class = "dash" >
+			<div class = "menu" onmouseover = show('side') onmouseout = hide('side') >
+				<div class = "bar"></div>
+				<div class = "bar"></div>
+				<div class = "bar"></div>
+			</div>	
+			
+			
+			
+		</div>	
+
+		
+		<div class="container">
+			<div class="background-image"></div>
+			<div id="bar_represent">
+		
+			<article><p class="head"><b>Energy Consumption : <p id="energy_consumption"></p>
+</b></p><div id="bar"><div class="color" id="ener_color"></div><div class="per" id="per"></div></div></article>
+			<article><p class="head"><b>Transportation : <p id="transportation"></p>
+ </b></p><div id="bar"><div class="color" id="trans_color"></div><div class="per" id="per"></div></div></article>
+			<article><p class="head"><b>Land Filling : <p id="land_filling"></p>
+</b></p><div id="bar"><div class="color" id="land_color"></div><div class="per" id="per"></div></div></article>
+			</div>
+		</div>
+		<p id="energy_consumption"></p>
+		<p id="transportation"></p>
+		<p id="land_filling"></p>
+		<p id="carbonFootprint"></p>
+		<p class="sugg_head"><b>To reduce Energy Consumption</b></p>
+		<ul id="ener_point" class="sugg_point"></ul>
+		<p class="sugg_head"><b>To reduce Transportation</b></p>
+		<ul id="trans_point" class="sugg_point"></ul>
+		<p class="sugg_head"><b>To reduce Land Filling</b></p>
+		<ul id="land_point" class="sugg_point"></ul>
+
+		
+
+	</body>
+
+</html>
