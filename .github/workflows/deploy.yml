@@ -3,25 +3,45 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main  # or your branch name
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v2
 
-      - name: Set up SSH key
-        run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
-          chmod 600 key.pem
+    - name: Add EC2 IP to known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H 13.201.255.61 >> ~/.ssh/known_hosts
 
-      - name: Add EC2 IP to known_hosts
-        run: |
-          ssh-keyscan -H 13.201.255.61 >> ~/.ssh/known_hosts
+    - name: Create folder in EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: mkdir -p /home/ubuntu/Dockerized_Carbon_Tracker
 
-      - name: Deploy to EC2
-        run: |
-          ssh -i key.pem ubuntu@13.201.255.61 "cd ~/Dockerized_Carbon_Tracker && docker-compose down && git pull origin main && docker-compose up -d --build"
+    - name: Copy files to EC2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        source: "."
+        target: "/home/ubuntu/Dockerized_Carbon_Tracker"
+
+    - name: SSH and Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          cd /home/ubuntu/Dockerized_Carbon_Tracker
+          docker-compose down
+          docker-compose up -d --build
