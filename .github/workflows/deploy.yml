@@ -13,6 +13,14 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
+    - name: Create folder in EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: mkdir -p /home/ubuntu/Dockerized_Carbon_Tracker
+
     - name: Copy files to EC2
       uses: appleboy/scp-action@master
       with:
